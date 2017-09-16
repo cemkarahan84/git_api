@@ -1,0 +1,98 @@
+<div class=""  ng-controller="homeCtrl">
+
+
+
+
+
+<nav class="">
+  <a class="navbar-brand" href="#">GIT SEARCH</a>
+
+
+<form ng-submit="addToList()" class="form form-inline   " style="width:400px;">
+
+
+
+<div class="input-group search">
+<!-- <select ng-model="select" class="input-group-addon">
+  <option value="users">Users</option>
+  <option value="repositories" selected="selected" >Repositories</option>
+</select> -->
+
+<input class="form-control search" type="text" name="" ng-model="search" placeholder="Search repositories..."/>
+<button type="submit" class="btn search-btn input-group-addon"><i class="material-icons">&#xE8B6;</i>
+</div></button>
+
+
+
+</form>
+</nav>
+
+
+
+
+
+<div class="leftPanel">
+
+
+  <div  class="listOfCard">
+    <div ng-repeat="n in response" class="reposCard col-12 col-md-auto  hvr-grow">
+
+      <div class="row">
+  <div class="col-8"><h3> {{n.owner.login}}/{{n.name}}</h3></div>
+  <div class="col-4" style="text-align:right;"><img src="{{n.owner.avatar_url}}" ></div>
+  <div class="col-12 desc">
+    <p>Description:</p>
+    <h4>{{n.description  | limitTo: 60}} <span ng-if="n.description.length > 60">&hellip;</span></h4>
+
+  </div>
+  <div class="col-6">
+Created at :{{n.created_at | date:' dd MMMM yyyy'}}
+  </div>
+
+  <div class="col-6">
+Last update : {{n.updated_at | date :'dd MMMM yyyy'}}
+  </div>
+
+
+</div>
+
+
+
+
+
+       <a href="#/" ng-click="viewDetails(n.full_name)" class="showDetails btn " >Show details</a>
+       <a href="{{n.html_url}}" target="_blank" class="gitView">View on Github</a>
+
+    </div>
+
+  </div>
+  </div>
+
+
+
+
+  <div class="rightPanel" ng-show="details">
+  <h1 class="detailsHead">{{details.repos.name}}</h1>
+  <hr>
+
+<div class="row  ownerDetails">
+  <div class="col-2">
+  <i class="material-icons">&#xE87C;</i>
+  </div>
+  <div class="col-10">
+    <p>{{details.repos.owner.login}}</p>
+
+  </div>
+  <a class="btn" data-toggle="collapse" data-target="#list">
+    List of Contributors
+  </a>
+  <div class="col-12 collapse" id="list">
+    <p ng-repeat="contributor in details.contributors">{{contributor.login}}</p>
+  </div>
+</div>
+
+
+  </div>
+
+
+  </div>

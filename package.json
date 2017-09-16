@@ -1,0 +1,17 @@
+{
+  "name": "git_api",
+  "version": "1.0.0",
+  "description": "Use of github api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "hover.css": "^2.2.1",
+    "node": "^8.3.0",
+    "request": "^2.81.0"
+  }
+}
