@@ -37,5 +37,4 @@ Actually I choose to divide the home page of the application in 2 panel, first o
 Next update will change the main structure to show the details in pop-up like div.
 
 
-
-  
+Not  responsive on mobile yet, only on desktop, a personal choice to manage my time and dev the features first. However, I will include a responsive version after.
