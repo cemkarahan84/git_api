@@ -68,9 +68,35 @@
     </div>
   </div>
 
+<div class=" popContainer " ng-show="details" >
+
+  <i ng-click="details=null" class="material-icons hidePopup">&#xE5CD;</i>
 
 
+<div class="popUp container-fluid" >
+  <h1 class="detailsHead">{{details.repos.name}}</h1>
+  <hr>
 
+  <div class="row  ownerDetails">
+    <div class="col-2">
+      <i class="material-icons">&#xE87C;</i>
+    </div>
+    <div class="col-10">
+      <p>{{details.repos.owner.login}}</p>
+
+    </div>
+    <a class="btn" data-toggle="collapse" data-target="#list">
+      List of Contributors
+    </a>
+    <div class="col-12 collapse" id="list">
+      <p ng-repeat="contributor in details.contributors">{{contributor.login}} - {{contributor.contributions}} contributions</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!--
   <div class="rightPanel" ng-show="details">
     <h1 class="detailsHead">{{details.repos.name}}</h1>
     <hr>
@@ -92,7 +118,7 @@
     </div>
 
 
-  </div>
+  </div> -->
 
 
 </div>

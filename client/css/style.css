@@ -130,7 +130,7 @@ form input{
 
 .leftPanel
 {
-  width: 70%;
+  width: 100%;
   background-color: #2d2d68;
   padding-top: 100px;
   float: left;
@@ -164,4 +164,41 @@ word-wrap: break-word;
 .ownerDetails
 {
   font-size: 1.1em;
+}
+
+
+.popContainer
+{z-index: 100;
+  top: 0;
+  left: 0;
+position:fixed ;
+
+padding: 30px;
+width: 100%;
+height: 100%;
+background-color: rgba(204,204,204,0.6);
+}
+.popUp
+{margin: 0 auto;
+height: 100%;
+overflow-y: auto;
+padding: 30px;
+
+  background-color: azure;
+}
+
+
+
+.hidePopup
+{
+position: absolute;
+right: 30px;
+top: 30px;
+color: black;
+padding: 5px;
+}
+
+.hidePopup:hover,.hidePopup:focus{
+  cursor: pointer;
+
 }
