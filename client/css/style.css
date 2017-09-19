@@ -1,16 +1,21 @@
 .reposCard
 {
-  margin: 20px 100px;
-  height: 300px;
+  margin: 20px ;
+  height: auto;
   background-color: #f9fbfd;
   color:#494949;
   padding: 30px;
-
-
 }
 
 body{
   font-family: 'Jura', sans-serif;
+}
+
+.hvr-bounce-in:hover ,
+.hvr-bounce-in:focus,
+.hvr-bounce-in:active
+{
+  transform: scale(1.1) !important;
 }
 
 
@@ -124,7 +129,9 @@ form input{
 .listOfCard
 {
   position: relative;
-  width: 100%;
+  width:70%;
+margin: 0 auto;
+
 }
 
 
@@ -135,6 +142,13 @@ form input{
   padding-top: 100px;
   float: left;
   min-height: 100vh;
+}
+
+
+
+.filterSection select option
+{
+  color: black;
 }
 
 
@@ -201,4 +215,34 @@ padding: 5px;
 .hidePopup:hover,.hidePopup:focus{
   cursor: pointer;
 
+}
+
+.filterPopup
+{
+z-index: 100;
+position: fixed;
+margin-left: 20px;
+}
+
+
+.filterSection
+{
+
+padding: 30px;
+  width: 100%;
+  z-index: 111;
+  background-color:rgba(255,255,255,0.5);
+  border-radius: 0 10px 10px 10px;
+
+}
+
+.filterButton
+{
+padding: 10px;
+background-color: rgba(255, 255, 255, 0.5);
+border-radius: 10px 10px 0 0 ;
+  cursor: pointer;
+position: relative;
+top: 0px;
+z-index: 222;
 }

@@ -8,7 +8,7 @@
     <a class="navbar-brand" href="#">GIT SEARCH</a>
 
 
-    <form ng-submit="addToList()" class="form form-inline   " style="width:400px;">
+    <form ng-submit="searchRepos()" class="form form-inline   " style="width:400px;">
 
 
 
@@ -18,7 +18,7 @@
         <option value="repositories" selected="selected" >Repositories</option>
       </select> -->
 
-      <input class="form-control search" type="text" name="" ng-model="search" placeholder="Search repositories..."/>
+      <input class="form-control search" type="text" name="" ng-model="search" placeholder="Search repositories..."  ng-change="searchRepos()"/>
       <button type="submit" class="btn search-btn input-group-addon"><i class="material-icons">&#xE8B6;</i>
       </div></button>
 
@@ -34,23 +34,37 @@
   <div class="leftPanel">
 
 
-    <div  class="listOfCard">
-      <div ng-repeat="n in response" class="reposCard col-12 col-md-auto  hvr-grow">
+<div class="filterPopup ">
+  <i class="material-icons filterButton hvr-bounce-in " data-toggle="collapse" data-target="#demo">&#xE896;</i>
+      <div class=" collapse" id="demo" >
+        <div class="filterSection">
+          <select  class="input-group-addon" ng-model="filter" >
+            <option value="" selected>OrderBy</option>
+          <option value="created_at">Creation Date</option>
+          <option value="updated_at" >Update date</option>
+        </select>
+
+        </div>
+      </div>
+</div>
+
+
+    <div  class="listOfCard ">
+      <div ng-repeat="n in response | orderBy: filter " class=" container reposCard   hvr-grow">
 
         <div class="row">
-          <div class="col-8"><h3> {{n.owner.login}}/{{n.name}}</h3></div>
-          <div class="col-4" style="text-align:right;"><img src="{{n.owner.avatar_url}}" ></div>
+          <div class="col-2" style="text-align:center;"><img src="{{n.owner.avatar_url}}" ></div>
+
+          <div class="col-5"><h4> {{n.owner.login}}/{{n.name}}</h4></div>
+
+          <div class="col-5">
+  Created at :{{n.created_at | date:' dd MMMM yyyy'}} <br>
+  Last update : {{n.updated_at | date :'dd MMMM yyyy'}}
+          </div>
           <div class="col-12 desc">
-            <p>Description:</p>
-            <h4>{{n.description  | limitTo: 60}} <span ng-if="n.description.length > 60">&hellip;</span></h4>
 
-          </div>
-          <div class="col-6">
-            Created at :{{n.created_at | date:' dd MMMM yyyy'}}
-          </div>
+            <p>  Description : {{n.description  | limitTo: 60}} <span ng-if="n.description.length > 60">&hellip;</span></p>
 
-          <div class="col-6">
-            Last update : {{n.updated_at | date :'dd MMMM yyyy'}}
           </div>
 
 
@@ -95,6 +109,7 @@
 </div>
 
 </div>
+
 
 <!--
   <div class="rightPanel" ng-show="details">

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-drag-drop": "^3.1.0",
     "express": "^4.15.4",
     "hover.css": "^2.2.1",
     "node": "^6.11.0",

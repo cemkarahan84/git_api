@@ -1,6 +1,10 @@
 /**
  * Déclaration de l'application
  */
+
+
+
+
 var myApp = angular.module('myApp', [
     // Dépendances du "module"
     'ngRoute',
@@ -19,10 +23,6 @@ myApp.config(['$routeProvider','$locationProvider',
         .when('/', {
             templateUrl: 'home.html',
             controller: 'homeCtrl'
-        })
-        .when('/home', {
-            templateUrl: 'repos.html',
-            controller: 'reposCtrl'
         }).otherwise({
             redirectTo: '/'
         });
@@ -44,18 +44,23 @@ var search = angular.module('search', []);
 routeAppControllers.controller('homeCtrl',['$scope','$http',function($scope,$http){
 
 
+
+
+
 $scope.details=null;
 
-  $scope.addToList=function()
+  $scope.searchRepos=function()
   {
-       var newAdd = {query :$scope.search,
+       var search = {query :$scope.search,
                     };
 
 
-       $http.get('/search',{params:newAdd}).success(
-        function(newAdd){
-            console.log(newAdd)
-            $scope.response=newAdd;
+       $http.get('/search',{params:search}).success(
+        function(search){
+            console.log(search)
+search =
+
+            $scope.response=search;
 
         }).error(
         function(error){
