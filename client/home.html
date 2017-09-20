@@ -1,3 +1,4 @@
+
 <div class=""  ng-controller="homeCtrl">
 
 
@@ -34,6 +35,9 @@
   <div class="leftPanel">
 
 
+
+
+
 <div class="filterPopup ">
   <i class="material-icons filterButton hvr-bounce-in " data-toggle="collapse" data-target="#demo">&#xE896;</i>
       <div class=" collapse" id="demo" >
@@ -49,13 +53,13 @@
 </div>
 
 
-    <div  class="listOfCard ">
-      <div ng-repeat="n in response | orderBy: filter " class=" container reposCard   hvr-grow">
+    <div  class="listOfCard " ng-init="limit = 10">
+      <div ng-repeat="n in response | orderBy: filter |limitTo : limit as results " class=" container reposCard   hvr-grow  ">
 
         <div class="row">
-          <div class="col-2" style="text-align:center;"><img src="{{n.owner.avatar_url}}" ></div>
+          <div class="col-7" >
 
-          <div class="col-5"><h4> {{n.owner.login}}/{{n.name}}</h4></div>
+          <h4><img src="{{n.owner.avatar_url}}" > {{n.owner.login}}/{{n.name}}</h4></div>
 
           <div class="col-5">
   Created at :{{n.created_at | date:' dd MMMM yyyy'}} <br>
@@ -78,34 +82,58 @@
         <a href="{{n.html_url}}" target="_blank" class="gitView">View on Github</a>
 
       </div>
+      <div class="col-12 " style="text-align:center;">
+        <button  class=" btn showMore hvr-sweep-to-top" ng-hide="results.length === response.length"
+          ng-click="limit = limit +5">show more...</button>
+      </div>
+
+
+
+
 
     </div>
+
+
+
+
+
+
   </div>
 
 <div class=" popContainer " ng-show="details" >
 
-  <i ng-click="details=null" class="material-icons hidePopup">&#xE5CD;</i>
 
 
 <div class="popUp container-fluid" >
-  <h1 class="detailsHead">{{details.repos.name}}</h1>
+  <i ng-click="details=null" class="material-icons hidePopup ">&#xE5CD;</i>
+  <h1 class="detailsHead">{{details.repos.full_name}}</h1>
   <hr>
 
   <div class="row  ownerDetails">
-    <div class="col-2">
-      <i class="material-icons">&#xE87C;</i>
-    </div>
-    <div class="col-10">
-      <p>{{details.repos.owner.login}}</p>
+
+    <div class="col-12">
+    <p>{{details.repos.description}}</p>
 
     </div>
-    <a class="btn" data-toggle="collapse" data-target="#list">
-      List of Contributors
-    </a>
-    <div class="col-12 collapse" id="list">
-      <p ng-repeat="contributor in details.contributors">{{contributor.login}} - {{contributor.contributions}} contributions</p>
+    <div class="col-4">
+      <a class="btn listOfContributors" data-toggle="collapse" data-target="#list">
+        List of Contributors
+        <hr>
+      </a>
+
+      <div class="collapse" id="list">
+        <p ng-repeat="contributor in details.contributors">{{contributor.login}} - {{contributor.contributions}} contributions</p>
+      </div>
+    </div>
+
+    <div class="col-8">
+      <canvas  id="doughnut" class="chart chart-doughnut"
+        chart-data="data" chart-labels="labels">
+      </canvas>
     </div>
   </div>
+
+
 </div>
 
 </div>

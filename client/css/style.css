@@ -25,6 +25,11 @@ body{
     transform: scale(1.05) !important;
 }
 
+
+
+
+
+
 .reposCard:hover
 {
 
@@ -192,25 +197,50 @@ width: 100%;
 height: 100%;
 background-color: rgba(204,204,204,0.6);
 }
+
+
+
 .popUp
 {margin: 0 auto;
-height: 100%;
+height: 95%;
+width: 95%;
 overflow-y: auto;
 padding: 30px;
-
+z-index: 101;
   background-color: azure;
+  position: relative;
 }
 
 
 
 .hidePopup
 {
-position: absolute;
-right: 30px;
-top: 30px;
-color: black;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+color: white;
 padding: 5px;
+background-color: rgba(231,37,37,0.6);
+
 }
+
+.showMore
+{
+  margin: 10px;
+  background-color: white;
+  border-radius: 2px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+.listOfContributors
+{
+  cursor: pointer;
+}
+
+
+
 
 .hidePopup:hover,.hidePopup:focus{
   cursor: pointer;

@@ -8,10 +8,14 @@
 var myApp = angular.module('myApp', [
     // Dépendances du "module"
     'ngRoute',
-    'routeAppControllers'
+    'routeAppControllers',
+    'chart.js'
 ]);
 
 var routeAppControllers = angular.module('routeAppControllers', []);
+
+
+
 
 
 myApp.config(['$routeProvider','$locationProvider',
@@ -45,7 +49,8 @@ routeAppControllers.controller('homeCtrl',['$scope','$http',function($scope,$htt
 
 
 
-
+  $scope.labels = [];
+  $scope.data = [];
 
 $scope.details=null;
 
@@ -79,7 +84,21 @@ let query={
   $http.get('/repos',{params:query}).success(
    function(query){
      $scope.details=query;
-console.log(query);
+
+console.log(query.contributors);
+
+let listName=[];
+let listData=[];
+
+$scope.labels=listName;
+$scope.data=listData;
+
+     for (var key in query.contributors) {
+       listName.push(query.contributors[key].login);
+       listData.push(query.contributors[key].contributions);
+     }
+
+console.log(listName);
    }).error(
    function(error){
        console.log(error)
