@@ -4,13 +4,14 @@
   "description": "Use of github api",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "angular-chart.js": "^1.1.1",
     "angular-drag-drop": "^3.1.0",
+    "angular-timeline": "^1.7.0",
     "express": "^4.15.4",
     "hover.css": "^2.2.1",
     "node": "^6.11.0",

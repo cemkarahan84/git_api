@@ -1,167 +1,148 @@
-
-<div class=""  ng-controller="homeCtrl">
-
-
-
-
-
-  <nav class="">
+<div class="" ng-controller="homeCtrl">
+  <nav class="navbar navbar-expand-lg fixed-top">
     <a class="navbar-brand" href="#">GIT SEARCH</a>
-
-
+    <button type="button" ng-click="details=!details" name="button">red</button>
     <form ng-submit="searchRepos()" class="form form-inline   " style="width:400px;">
-
-
-
       <div class="input-group search">
-        <!-- <select ng-model="select" class="input-group-addon">
-        <option value="users">Users</option>
-        <option value="repositories" selected="selected" >Repositories</option>
-      </select> -->
-
-      <input class="form-control search" type="text" name="" ng-model="search" placeholder="Search repositories..."  ng-change="searchRepos()"/>
-      <button type="submit" class="btn search-btn input-group-addon"><i class="material-icons">&#xE8B6;</i>
-      </div></button>
-
-
-
+        <input class="form-control search" type="text" name="" ng-model="search" placeholder="Search repositories..." />
+        <button type="submit" class="btn search-btn input-group-addon"><i class="material-icons">&#xE8B6;</i>
+        </div></button>
     </form>
   </nav>
-
-
-
-
-
   <div class="leftPanel">
-
-
-
-
-
-<div class="filterPopup ">
-  <i class="material-icons filterButton hvr-bounce-in " data-toggle="collapse" data-target="#demo">&#xE896;</i>
-      <div class=" collapse" id="demo" >
+    <div class="filterPopup ">
+      <i class="material-icons filterButton hvr-bounce-in " data-toggle="collapse" data-target="#demo">&#xE896;</i>
+      <div class=" collapse" id="demo">
         <div class="filterSection">
-          <select  class="input-group-addon" ng-model="filter" >
+          <select class="input-group-addon" ng-model="filter">
             <option value="" selected>OrderBy</option>
           <option value="created_at">Creation Date</option>
           <option value="updated_at" >Update date</option>
         </select>
-
         </div>
       </div>
-</div>
-
-
-    <div  class="listOfCard " ng-init="limit = 10">
-      <div ng-repeat="n in response | orderBy: filter |limitTo : limit as results " class=" container reposCard   hvr-grow  ">
-
+    </div>
+    <div class="listOfCard " ng-init="limit = 10" ng-show="response">
+      <div ng-repeat="n in response | orderBy: filter |limitTo : limit as results " class=" container reposCard   hvr-grow   " style="-webkit-transition-delay:{{$index * 500}}ms">
         <div class="row">
-          <div class="col-7" >
-
-          <h4><img src="{{n.owner.avatar_url}}" > {{n.owner.login}}/{{n.name}}</h4></div>
-
+          <div class="col-7">
+            <h4><img src="{{n.owner.avatar_url}}" > {{n.owner.login}}/{{n.name}}</h4></div>
           <div class="col-5">
-  Created at :{{n.created_at | date:' dd MMMM yyyy'}} <br>
-  Last update : {{n.updated_at | date :'dd MMMM yyyy'}}
+            Created at :{{n.created_at | date:' dd MMMM yyyy'}} <br> Last update : {{n.updated_at | date :'dd MMMM yyyy'}}
           </div>
           <div class="col-12 desc">
-
-            <p>  Description : {{n.description  | limitTo: 60}} <span ng-if="n.description.length > 60">&hellip;</span></p>
-
+            <p> Description : {{n.description | limitTo: 60}} <span ng-if="n.description.length > 60">&hellip;</span></p>
           </div>
-
-
         </div>
-
-
-
-
-
-        <a href="#/" ng-click="viewDetails(n.full_name)" class="showDetails btn " >Show details</a>
+        <a href="#/" ng-click="viewDetails(n.full_name)" class="showDetails btn ">Show details</a>
         <a href="{{n.html_url}}" target="_blank" class="gitView">View on Github</a>
-
       </div>
       <div class="col-12 " style="text-align:center;">
-        <button  class=" btn showMore hvr-sweep-to-top" ng-hide="results.length === response.length"
-          ng-click="limit = limit +5">show more...</button>
+        <button class=" btn showMore hvr-sweep-to-top" ng-hide="results.length === response.length" ng-click="limit = limit +5">show more...</button>
       </div>
-
-
-
-
-
     </div>
-
-
-
-
-
-
   </div>
-
-<div class=" popContainer " ng-show="details" >
-
-
-
-<div class="popUp container-fluid" >
-  <i ng-click="details=null" class="material-icons hidePopup ">&#xE5CD;</i>
-  <h1 class="detailsHead">{{details.repos.full_name}}</h1>
-  <hr>
-
-  <div class="row  ownerDetails">
-
-    <div class="col-12">
-    <p>{{details.repos.description}}</p>
-
-    </div>
-    <div class="col-4">
-      <a class="btn listOfContributors" data-toggle="collapse" data-target="#list">
-        List of Contributors
+  <div class="openleft " ng-show="details">
+    <button type="button" ng-click="details=null " class="hidePanel btn"><i class="material-icons">&#xE315;</i></button>
+    <div class="row col-12  " style="padding-left:100px;">
+      <div class="col-12">
+        <h1 class="detailsHead">{{details.repos.full_name}}</h1>
         <hr>
-      </a>
-
-      <div class="collapse" id="list">
-        <p ng-repeat="contributor in details.contributors">{{contributor.login}} - {{contributor.contributions}} contributions</p>
       </div>
-    </div>
-
-    <div class="col-8">
-      <canvas  id="doughnut" class="chart chart-doughnut"
-        chart-data="data" chart-labels="labels">
-      </canvas>
+      <div class="col-4">
+        <div class="item item-2">
+          <h3>Description</h3>
+          <hr>
+          <p>{{details.repos.description}}</p>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="item item-2">
+          <h3>Description</h3>
+          <hr>
+          <p>{{details.repos.description}}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="item ">
+          <h3>Contributions</h3>
+          <hr>
+          <canvas id="doughnut" class="chart chart-pie" chart-data="data" chart-labels="labels">
+        </canvas>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="item">
+          <h3>Lasts Commits Chart // NOT FINISH</h3>
+          <hr>
+          <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels">
+        </canvas>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="item ">
+          <h3>Last Commits</h3>
+          <hr>
+          <div class=" commitsContainer item-1">
+            <div ng-repeat="commit in commits" class=" row col-12 ">
+              <div class="col-4">
+                <h4 class="timelineDate">{{commit.commit.committer.date | date:' dd MMMM yyyy'}} </h4>
+              </div>
+              <div class=" timeline">
+              </div>
+              <div class="commitItem2 col-7">
+                {{commit.commit.committer.name}}
+                <hr>
+                <br> {{commit.commit.message}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item item-1">
+          test
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          test
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="item">
+          test
+        </div>
+      </div>
     </div>
   </div>
-
-
-</div>
-
-</div>
-
-
-<!--
-  <div class="rightPanel" ng-show="details">
-    <h1 class="detailsHead">{{details.repos.name}}</h1>
-    <hr>
-
-    <div class="row  ownerDetails">
-      <div class="col-2">
-        <i class="material-icons">&#xE87C;</i>
-      </div>
-      <div class="col-10">
-        <p>{{details.repos.owner.login}}</p>
-
-      </div>
-      <a class="btn" data-toggle="collapse" data-target="#list">
-        List of Contributors
-      </a>
-      <div class="col-12 collapse" id="list">
-        <p ng-repeat="contributor in details.contributors">{{contributor.login}}</p>
+  <div class=" popContainer " ng-show="aaa">
+    <div class="popUp container-fluid ">
+      <i ng-click="details=null" class="material-icons hidePopup ">&#xE5CD;</i>
+      <hr>
+      <div class="row  ownerDetails">
+        <div class="col-12">
+          <p>{{details.repos.description}}</p>
+        </div>
+        <div class="col-4">
+          <a class="btn listOfContributors" data-toggle="collapse" data-target="#list">
+            List of Contributors
+          <hr>
+          </a>
+          <div class="collapse" id="list">
+            <p ng-repeat="contributor in details.contributors">{{contributor.login}} - {{contributor.contributions}} contributions</p>
+          </div>
+        </div>
+        <div class="col-8">
+          <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels">
+      </canvas>
+        </div>
+        <div class="col-12">
+          <p ng-repeat="commit in commits">
+            {{commit.commit.committer.name}} | {{commit.commit.committer.date}}
+          </p>
+        </div>
       </div>
     </div>
-
-
-  </div> -->
-
-
-</div>
+  </div>
+  </div>
