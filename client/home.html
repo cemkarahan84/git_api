@@ -1,8 +1,12 @@
 <div class="" ng-controller="homeCtrl">
   <nav class="navbar navbar-expand-lg fixed-top">
-    <a class="navbar-brand" href="#">GIT SEARCH</a>
-   <!--  test button <button type="button" ng-click="details=!details" name="button">red</button> --> -->
-    <form ng-submit="searchRepos()" class="form form-inline   " style="width:400px;">
+    <div class="collapse navbar-collapse">
+  <a class="navbar-brand" href="#">GIT SEARCH</a>
+    </div>
+
+    <!-- TEST BUTTON -->
+   <!--  <button type="button" ng-click="details=!details" name="button">red</button> -->
+    <form ng-submit="searchRepos()" class="form form-inline my-2 my-lg-0" style="width:400px;">
       <div class="input-group search">
         <input class="form-control search" type="text" name="" ng-model="search" placeholder="Search repositories..." />
         <button type="submit" class="btn search-btn input-group-addon"><i class="material-icons">&#xE8B6;</i>
