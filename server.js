@@ -12,7 +12,6 @@ const path = require('path');
 
 
 
-
 // Déclaration des variables
 let port = process.env.PORT || 3000;
 
@@ -20,17 +19,19 @@ let port = process.env.PORT || 3000;
 
 
 
-console.log(port);
+console.log();
 
 
 var resp = {};
 // Routing de l'application pour definir le front client
-app.use(express.static(path.join(__dirname, 'client')));
+
 
 // Création du serveur
-http.listen(port, () => {
-  console.log('\nAPI GIT listening at 127.0.0.1:', port);
-});
+// Création du serveur
+
+
+app.use(express.static(path.join(__dirname, '/client')));
+app.listen(port);
 
 //Route get qui ecoute le front pour la reception de queries
 app.get('/search', function(req, res) {
@@ -129,7 +130,7 @@ app.get('/details', function(req, res) {
         contributors: obj2
       };
 
-      res.send(JSON.stringify(send)); //on envoi au front avec les deux fetch 
+      res.send(JSON.stringify(send)); //on envoi au front avec les deux fetch
     });
 
 
