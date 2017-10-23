@@ -26,6 +26,9 @@
         </div>
       </div>
     </div>
+    <div ng-show="! response" style="text-align:center;padding:40px; color:white;">
+      <h1>To search a repositorie please use the searh form above. </h1>
+    </div>
     <div class="listOfCard " ng-init="limit = 10" ng-show="response">
       <div ng-repeat="n in response | orderBy: filter |limitTo : limit as results " class=" container reposCard   hvr-grow   " style="-webkit-transition-delay:{{$index * 500}}ms">
         <div class="row">

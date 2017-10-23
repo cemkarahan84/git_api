@@ -122,6 +122,61 @@ routeAppControllers.controller('homeCtrl', ['$scope', '$http', function($scope, 
     success(function(query) {
 
       $scope.commits = query;
+      var committers=[];
+
+      for (var key1 in query)
+      {
+        console.log(query[key1].committer.login);
+
+        console.log(committers.length);
+
+
+        // if(committers.length != 0)
+        // {
+        //     var x= committers.findIndex(x => x.name === query[key1].committer.login);
+        //     if(x <0)
+        //     {
+        //       console.log(committers[x]);
+        //       committers[x].count+= 1;
+        //     }
+        //     else
+        //     {
+        //       committers.push({ "name" : query[key1].committer.login, "count": 1});
+        //     }
+        // }
+        // else {
+        //     committers.push({ "name" : query[key1].committer.login, "count": 1});
+        // }
+
+
+
+
+        //
+        // if(committers.findIndex(x  => x.name === query[key1].committer.login))
+        // {
+        // console.log("OKKK1");
+        // }
+        // else {
+        //   console.log("OK");
+        //   committers.push({ "committer" : query[key1].committer.login, "count": 1});
+        // }
+
+
+          // for(var key2 in committers)
+          // {
+          //   if( query[key1].committer.login)
+          //   {
+          //     console.log("OKK");
+          //     committers[key2].count +=1;
+          //   }
+          //   else {
+          //     committers.push({ "committer" : query[key1].committer.login, "count": 1});
+          //   }
+          // }
+
+
+    }
+  console.log(committers);
 
     })
 
